@@ -1,14 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>My Project</title>
-</head>
-<body>
-    <h1>Project Starter</h1>
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+      integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+      crossorigin="anonymous"
+    />
+    <title>25 + 5 Work Timer</title>
+  </head>
+  <body>
+    <div class="header">
+      <h1 class="main-title">25 + 5 Work Timer</h1>
+      <div class="icons-container">
+        <a href="#" class="fab fa-3x fa-github icons"></a>
+        <a href="#" class="fab fa-3x fa-twitter icons"></a>
+      </div>
+    </div>
+
+    <div class="timer-container">25:00</div>
+
+    <div class="controls-container">
+      <div class="break-length-container">
+        <span class="label">Break Length</span>
+        <button class="controls">
+          <i class="fas fa-3x fa-arrow-alt-circle-up"></i>
+        </button>
+        <span class="indicator">5</span>
+        <button class="controls">
+          <i class="fas fa-3x fa-arrow-alt-circle-down"></i>
+        </button>
+      </div>
+
+      <div class="center-buttons-container">
+        <button class="controls"><i class="fas fa-3x fa-play"></i></button>
+        <button class="controls"><i class="fas fa-3x fa-pause"></i></button>
+        <button class="controls"><i class="fas fa-3x fa-sync-alt"></i></button>
+      </div>
+
+      <div class="session-length-container">
+        <span class="label">Session Length</span>
+        <button class="controls">
+          <i class="fas fa-3x fa-arrow-alt-circle-up"></i>
+        </button>
+        <span class="indicator">25</span>
+        <button class="controls">
+          <i class="fas fa-3x fa-arrow-alt-circle-down"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="footer-credits">by Eduard Gavrila</div>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
