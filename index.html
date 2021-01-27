@@ -18,45 +18,60 @@
       <div class="icons-container">
         <a
           href="https://github.com/edy-gavrila/freeCodeCamp-25-plus-5-clock"
-          class="fab fa-3x fa-github icons"
+          class="fab fa-2x fa-github icons"
         ></a>
-        <a href="#" class="fab fa-3x fa-twitter icons"></a>
+        <a href="#" class="fab fa-2x fa-twitter icons"></a>
       </div>
     </div>
 
-    <div class="timer-container">25:00</div>
+    <div class="timer-container">
+      <span id="timer-label">Session</span>
+      <span id="time-left">25:00</span>
+    </div>
 
     <div class="controls-container">
       <div class="break-length-container">
-        <span class="label">Break Length</span>
-        <button class="controls">
+        <span class="label" id="break-label">Break Length</span>
+        <button class="controls" id="break-increment">
           <i class="fas fa-3x fa-arrow-alt-circle-up"></i>
         </button>
-        <span class="indicator">5</span>
-        <button class="controls">
+        <span class="indicator" id="break-length">5</span>
+        <button class="controls" id="break-decrement">
           <i class="fas fa-3x fa-arrow-alt-circle-down"></i>
         </button>
       </div>
 
       <div class="center-buttons-container">
-        <button class="controls"><i class="fas fa-3x fa-play"></i></button>
-        <button class="controls"><i class="fas fa-3x fa-pause"></i></button>
-        <button class="controls"><i class="fas fa-3x fa-sync-alt"></i></button>
+        <button class="controls">
+          <i class="fas fa-3x fa-play" id="start"></i>
+        </button>
+        <button class="controls">
+          <i class="fas fa-3x fa-pause" id="pause"></i>
+        </button>
+        <button class="controls" id="reset">
+          <i class="fas fa-3x fa-sync-alt"></i>
+        </button>
       </div>
 
       <div class="session-length-container">
-        <span class="label">Session Length</span>
-        <button class="controls">
+        <span class="label" id="session-label">Session Length</span>
+        <button class="controls" id="session-increment">
           <i class="fas fa-3x fa-arrow-alt-circle-up"></i>
         </button>
-        <span class="indicator">25</span>
-        <button class="controls">
+        <span class="indicator" id="session-length">25</span>
+        <button class="controls" id="session-decrement">
           <i class="fas fa-3x fa-arrow-alt-circle-down"></i>
         </button>
       </div>
     </div>
-
     <div class="footer-credits">by Eduard Gavrila</div>
+    <audio id="audio">
+      <source
+        src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav"
+        type="audio/wav"
+      />
+    </audio>
+    <script src=" https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

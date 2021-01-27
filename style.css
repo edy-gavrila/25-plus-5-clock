@@ -31,6 +31,7 @@ body {
 
 .main-title {
   padding: 20px 40px;
+  font-size: 1.5rem;
 }
 
 .icons {
@@ -39,15 +40,20 @@ body {
 }
 
 .timer-container {
+  display:flex;
+  flex-direction: column;
   font-size: 7rem;
   margin: 80px;
   height: 350px;
   width: 350px;
-  border: solid 5px white;
+  border: solid 3px white;
   border-radius: 50%;
-  display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#timer-label {
+  font-size: 1.5rem;
 }
 
 .footer-credits {
