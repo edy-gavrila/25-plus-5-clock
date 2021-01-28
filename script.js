@@ -2,7 +2,7 @@
 
 const timerEl = document.getElementById("time-left");
 const resetBtn = document.getElementById("reset");
-const startBtn = document.getElementById("start");
+const startBtn = document.getElementById("start_stop");
 const pauseBtn = document.getElementById("pause");
 const timerLbl = document.getElementById("timer-label");
 const breakDecBtn = document.getElementById("break-decrement");
@@ -11,10 +11,10 @@ const sessionDecBtn = document.getElementById("session-decrement");
 const sessionIncBtn = document.getElementById("session-increment");
 const breakLengthEl = document.getElementById("break-length");
 const sessionLengthEl = document.getElementById("session-length");
-const audioEl = document.getElementById("audio");
+const audioEl = document.getElementById("beep");
 
 //2. create all program variables
-//We create a global object that hold all program variables
+//We create a global object that hold all program variables or the application state
 let appState = {
   isReset: false,
   isRunning: false,
@@ -38,13 +38,16 @@ function reset() {
   appState.currSecs = 0;
   appState.sessionType = "work";
   if (appState.timer != null) {
-    clearInterval(timer);
+    clearInterval(appState.timer);
+    appState.timer = null;
   }
 
   timerEl.innerText = "25:00";
   timerLbl.innerText = "Session";
   breakLengthEl.innerText = "5";
   sessionLengthEl.innerText = "25";
+  audioEl.pause();
+  audioEl.currentTime = 0;
 }
 
 //updateDisplay()    --updates the display to the current values
@@ -88,6 +91,8 @@ function sessionIncrement(step) {
 //BreakIncrement() -- increments the session duration by one minute
 //                 -- we only increment if the timer is not running
 //                 -- we pass the value 1 to increment and -1 to decrement
+//                 -- the code is very similar to the function above but,
+//for readability i kept it in two separate function rather than one more complex function
 function breakIncrement(step) {
   if (!appState.isRunning) {
     if (appState.breakLength <= 60 && appState.breakLength >= 0) {
@@ -99,18 +104,13 @@ function breakIncrement(step) {
         appState.breakLength = 1;
       }
     }
-    //are we in break mode?
+
     if (appState.sessionType === "break") {
       appState.currMins = appState.breakLength;
       appState.currSecs = 0;
     }
     updateDisplay();
   }
-}
-
-//pause()  -- pause the current timer
-function pause() {
-  appState.isRunning = false;
 }
 
 //toggleIsRunning   --toggles the IsRunning in app state
@@ -151,11 +151,13 @@ function swapStates() {
     appState.currMins = appState.sessionLength;
     appState.currSecs = 0;
   }
+  updateDisplay();
 }
 
 //playBeep()    --plays the sound referenced by the audio tag
 function playBeep() {
   audioEl.play();
+  audioEl.currentTime = 0;
 }
 
 //countdown()   --simply counts down clock-style using the values in the app state
@@ -163,14 +165,21 @@ function playBeep() {
 function countdown() {
   if (appState.isRunning) {
     if (appState.currMins === 0 && appState.currSecs === 0) {
+      stopClock();
       swapStates();
       playBeep();
     }
-    if (appState.currSecs == 0) {
-      appState.currMins--;
-      appState.currSecs = 60;
+    //the section below section caused a nasty bug. If we didnt check for the timer state, the code updating the minutes and seconds would run even if we stopped the clock earlier, causing the page not to display the initial value when swapping from session to break and vice-versa. This caused the FreeCodeCamp testing script to fail two tests
+    if (appState.timer != null) {
+      if (appState.currSecs === 0) {
+        appState.currMins--;
+        appState.currSecs = 60;
+      }
+      appState.currSecs--;
     }
-    appState.currSecs--;
+  }
+  if (appState.timer === null) {
+    startClock();
   }
 }
 
@@ -191,6 +200,7 @@ breakDecBtn.addEventListener("click", () => {
 });
 startBtn.addEventListener("click", () => {
   appState.isReset = false;
+  updateDisplay();
   toggleIsRunning();
 });
 

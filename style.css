@@ -40,7 +40,7 @@ body {
 }
 
 .timer-container {
-  display:flex;
+  display: flex;
   flex-direction: column;
   font-size: 7rem;
   margin: 80px;
