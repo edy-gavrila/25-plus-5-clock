@@ -50,6 +50,7 @@ body {
   border-radius: 50%;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 #timer-label {
